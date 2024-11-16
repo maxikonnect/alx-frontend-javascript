@@ -1,16 +1,16 @@
-import getBudgetObject from './7-getBudgetObject.js';
+function getCurrentYear() {
+  const date = new Date();
+  return date.getFullYear();
+}
 
-export default function getFullBudgetObject(income, gdp, capita) {
-  const budget = getBudgetObject(income, gdp, capita);
-  const fullBudget = {
-    ...budget,
-    getIncomeInDollars(income) { // ES6 shorthand for defining a method
-      return `$${income}`;
-    },
-    getIncomeInEuros(income) { // ES6 shorthand for defining a method
-      return `${income} euros`;
-    },
+export default function getBudgetForCurrentYear(income, gdp, capita) {
+  const currentYear = getCurrentYear();
+
+  const budget = {
+    [`income-${currentYear}`]: income,
+    [`gdp-${currentYear}`]: gdp,
+    [`capita-${currentYear}`]: capita,
   };
 
-  return fullBudget;
+  return budget;
 }
